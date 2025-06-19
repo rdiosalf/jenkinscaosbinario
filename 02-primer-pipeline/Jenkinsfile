@@ -5,8 +5,9 @@ pipeline {
         stage('docker build') {
             steps {
                 script {
+                    echo "Building Docker image with version: ${version}"
                     //sh "docker build -f 02-primer-pipeline/Dockerfile -t caosbinario/homer_page:1.0.0-${BUILD_ID} 02-primer-pipeline"
-                    bat "docker build -f 02-primer-pipeline/Dockerfile -t caosbinario/homer_page:1.0.0-${BUILD_ID} 02-primer-pipeline"
+                    bat "docker build -f 02-primer-pipeline/Dockerfile -t rdiosalf/jenkinscaos/homer_page:1.0.0-${BUILD_ID} 02-primer-pipeline"
                 }
             }
         }
@@ -14,7 +15,7 @@ pipeline {
             steps {
                 script {
                     //sh "docker push caosbinario/homer_page:1.0.0-${BUILD_ID}"
-                    echo "para pushear tengo que tener un usuario ....."
+                    echo "para pushear tengo que tener un usuario en docker hub....."
                     bat "docker push rdiosalf/jenkinscaos/homer_page:1.0.0-${BUILD_ID}"
                 }
             }
