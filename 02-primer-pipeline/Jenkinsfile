@@ -1,13 +1,26 @@
 pipeline {
     agent any
 
+    echo 'para el pusheo a docker hub tengo que tener un usuario en docker hub'
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('docker-hub')
+    }
+
     stages {
         stage('docker build') {
             steps {
                 script {
-                    echo "Building Docker image with version: ${version}"
+                    echo "Building Docker image with version: 1.0.0-${BUILD_ID}"
                     //sh "docker build -f 02-primer-pipeline/Dockerfile -t caosbinario/homer_page:1.0.0-${BUILD_ID} 02-primer-pipeline"
                     bat "docker build -f 02-primer-pipeline/Dockerfile -t rdiosalf/jenkinscaos/homer_page:1.0.0-${BUILD_ID} 02-primer-pipeline"
+
+                }
+            }
+        }
+        stage('docker login') {
+            steps {
+                script {
+                    bat "docker login -u %DOCKERHUB_CREDENTIALS_USR% -p %DOCKERHUB_CREDENTIALS_PSW%"
                 }
             }
         }
@@ -15,7 +28,7 @@ pipeline {
             steps {
                 script {
                     //sh "docker push caosbinario/homer_page:1.0.0-${BUILD_ID}"
-                    echo "para pushear tengo que tener un usuario en docker hub....."
+                    echo "pushear tengo que tener un usuario en docker hub.....${BUILD_ID}"
                     bat "docker push rdiosalf/jenkinscaos/homer_page:1.0.0-${BUILD_ID}"
                 }
             }
