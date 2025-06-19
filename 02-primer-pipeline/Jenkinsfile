@@ -14,7 +14,8 @@ pipeline {
             steps {
                 script {
                     //sh "docker push caosbinario/homer_page:1.0.0-${BUILD_ID}"
-                    bat "docker push caosbinario/homer_page:1.0.0-${BUILD_ID}"
+                    echo "para pushear tengo que tener un usuario ....."
+                    bat "docker push rdiosalf/jenkinscaos/homer_page:1.0.0-${BUILD_ID}"
                 }
             }
         }
