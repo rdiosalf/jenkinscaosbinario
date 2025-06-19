@@ -33,13 +33,13 @@ pipeline {
                 }
             }
         }
-        stage('docker run') {
+        /* stage('docker run') {
             steps {
                 script {
                     dockerLib.run(DockerImage: "rdiosalf/jenkinscaos:1.0.0-${BUILD_ID}")
                 }
             }
 
-        } 
+        }  */
     }
 }
