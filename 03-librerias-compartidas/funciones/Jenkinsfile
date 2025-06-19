@@ -2,6 +2,11 @@
 pipeline {
     agent any
 
+    //credenciales de docker hub definidas a nivel general en jenkins 
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('DOCKERHUB')
+    }
+
     stages {
         stage('docker build') {
             steps {
