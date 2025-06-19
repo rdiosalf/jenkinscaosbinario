@@ -1,6 +1,6 @@
-@Library('jenkinsLibstut') _
+@Library('jenkinsLibs') _
 dockerPipeline(
     dockerfilePath: "02-primer-pipeline/Dockerfile",
-    dockerImage: "rdiosalf/jenkinscaos:1.0.0-${BUILD_ID}",
+    dockerImage: "caosbinario/homer_page:1.0.0-${BUILD_ID}",
     dockerContext: "02-primer-pipeline"
 )

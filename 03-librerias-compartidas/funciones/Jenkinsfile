@@ -1,4 +1,4 @@
-@Library('jenkinsLibs') _
+@Library('jenkinsLibstut') _
 pipeline {
     agent any
 
@@ -7,17 +7,31 @@ pipeline {
             steps {
                 script {
                     dockerLib.build(DockerfilePath: "02-primer-pipeline/Dockerfile",
-                                    DockerImage: "caosbinario/homer_page:1.0.0-${BUILD_ID}",
+                                    DockerImage: "rdiosalf/jenkinscaos:1.0.0-${BUILD_ID}",
                                     DockerContext: "02-primer-pipeline")
+                }
+            }
+        }
+        stage('docker login') {
+            steps {
+                script {
+                    bat "docker login -u %DOCKERHUB_CREDENTIALS_USR% -p %DOCKERHUB_CREDENTIALS_PSW%"
                 }
             }
         }
         stage('docker push') {
             steps {
                 script {
-                    dockerLib.push(DockerImage: "caosbinario/homer_page:1.0.0-${BUILD_ID}")
+                    dockerLib.push(DockerImage: "rdiosalf/jenkinscaos:1.0.0-${BUILD_ID}")
                 }
             }
         }
-    }
+/*         stage('docker run') {
+            steps {
+                script {
+                    dockerLib.run(DockerImage: "rdiosalf/jenkinscaos:1.0.0-${BUILD_ID}")
+                }
+            }
+
+        } */
 }
