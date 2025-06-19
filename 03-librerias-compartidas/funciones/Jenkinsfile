@@ -6,6 +6,7 @@ pipeline {
         stage('docker build') {
             steps {
                 script {
+                    echo "usando libraries -Building Docker image with version: 1.0.0-${BUILD_ID}"
                     dockerLib.build(DockerfilePath: "02-primer-pipeline/Dockerfile",
                                     DockerImage: "rdiosalf/jenkinscaos:1.0.0-${BUILD_ID}",
                                     DockerContext: "02-primer-pipeline")
@@ -22,6 +23,7 @@ pipeline {
         stage('docker push') {
             steps {
                 script {
+                    echo "usando libraries -Pushear a dockerhub image with version: 1.0.0-${BUILD_ID}"
                     dockerLib.push(DockerImage: "rdiosalf/jenkinscaos:1.0.0-${BUILD_ID}")
                 }
             }
