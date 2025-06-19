@@ -1,7 +1,6 @@
 pipeline {
     agent any
 
-    echo 'para el pusheo a docker hub tengo que tener un usuario en docker hub'
     environment {
         DOCKERHUB_CREDENTIALS = credentials('docker-hub')
     }
