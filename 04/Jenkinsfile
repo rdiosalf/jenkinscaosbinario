@@ -1,6 +1,2 @@
 @Library('jenkinsLibstut') _
-dockerCIPythonPipeline(
-    dockerfilePath: "04/Dockerfile",
-    dockerImage: "rdiosalf/jenkinscaos:1.0.0-${BUILD_ID}",
-    dockerContext: "02-primer-pipeline"
-)
+dockerCIPythonPipeline()
