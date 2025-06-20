@@ -33,13 +33,16 @@ pipeline {
                 }
             }
         }
-        /* stage('docker run') {
+         stage('docker run') {
             steps {
                 script {
-                    dockerLib.run(DockerImage: "rdiosalf/jenkinscaos:1.0.0-${BUILD_ID}")
+                //docker run -d -p 8080:80 --name mi_nginx rdiosalf/jenkinscaos:1.0.0-13
+                echo "ejecutando docker run de.....${BUILD_ID}"
+                docker run -d -p 8080:80 --name mi_nginx rdiosalf/jenkinscaos:1.0.0-${BUILD_ID}
+                    //dockerLib.run(DockerImage: "rdiosalf/jenkinscaos:1.0.0-${BUILD_ID}")
                 }
             }
 
-        }  */
+        }  
     }
 }
